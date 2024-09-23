@@ -64,6 +64,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_anomaly_monitor_arn"></a> [anomaly\_monitor\_arn](#input\_anomaly\_monitor\_arn) | The arn of the anomaly monitor, only if the create\_anomaly\_monitor is false | `string` | `""` | no |
+| <a name="input_create_anomaly_monitor"></a> [create\_anomaly\_monitor](#input\_create\_anomaly\_monitor) | Boolian for create anomaly\_monitor or use an exist one | `bool` | `true` | no |
 | <a name="input_emails"></a> [emails](#input\_emails) | List of email addresses to notify | `list(any)` | n/a | yes |
 | <a name="input_raise_amount_absolute"></a> [raise\_amount\_absolute](#input\_raise\_amount\_absolute) | The Absolut increase in USD to trigger the detector. (ANOMALY\_TOTAL\_IMPACT\_ABSOLUTE) | `string` | n/a | yes |
 | <a name="input_raise_amount_percent"></a> [raise\_amount\_percent](#input\_raise\_amount\_percent) | An Expression object used to specify the anomalies that you want to generate alerts for. The precentage service cost increase than the expected | `string` | n/a | yes |
