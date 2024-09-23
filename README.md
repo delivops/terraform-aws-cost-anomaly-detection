@@ -23,7 +23,7 @@ Include this repository as a module in your existing terraform code:
 
 
 module "cost-anomaly-detector-example" {
-  source              = "delivops/cost-anomaly-detector/aws"
+  source              = "delivops/cost-anomaly-detection/aws"
   # version  = "x.x.x"
   region                = var.region
   emails                = var.emails
