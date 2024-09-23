@@ -25,7 +25,7 @@ resource "aws_ce_anomaly_subscription" "realtime_subscription" {
     }
   }
 
-  monitor_arn_list = var.create_anomaly_monitor ? [aws_ce_anomaly_monitor.anomaly_monitor.arn,] : [var.anomaly_monitor_arn,]
+  monitor_arn_list = var.create_anomaly_monitor ? [aws_ce_anomaly_monitor.anomaly_monitor[0].arn] : [var.anomaly_monitor_arn]
 
   dynamic "subscriber" {
     for_each = var.emails
