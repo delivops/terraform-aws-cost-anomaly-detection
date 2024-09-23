@@ -26,3 +26,13 @@ variable "resource_tags" {
   type        = map(string)
   default     = {}
 }
+variable "create_anomaly_monitor" {
+  type = bool
+  default = true
+  description = "Boolian for create anomaly_monitor or use an exist one"
+}
+variable "anomaly_monitor_arn" {
+  type = string
+  default = ""
+  description = "The arn of the anomaly monitor, only if the create_anomaly_monitor is false"
+}
