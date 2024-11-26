@@ -23,10 +23,6 @@ Include this repository as a module in your existing terraform code:
 # AWS Cost anomaly Detection
 ################################################################################
 
-provider "aws" {
-  region = "eu-west-1"
-}
-
 resource "aws_sns_topic" "sns_topic" {
   name         = "sns"
   display_name = "sns"
@@ -36,7 +32,6 @@ module "cost-anomaly-detector-example" {
   source              = "delivops/cost-anomaly-detection/aws"
   # version  = "x.x.x"
 
-  region                = var.region
   sns_topic              = aws_sns_topic.sns_topic.arn
   raise_amount_percent  = var.raise_amount_percent
   raise_amount_absolute = var.raise_amount_absolute
@@ -80,7 +75,6 @@ No modules.
 | <a name="input_email"></a> [email](#input\_email) | Email to notify | `string` | `""` | no |
 | <a name="input_raise_amount_absolute"></a> [raise\_amount\_absolute](#input\_raise\_amount\_absolute) | The Absolut increase in USD to trigger the detector. (ANOMALY\_TOTAL\_IMPACT\_ABSOLUTE) | `string` | n/a | yes |
 | <a name="input_raise_amount_percent"></a> [raise\_amount\_percent](#input\_raise\_amount\_percent) | An Expression object used to specify the anomalies that you want to generate alerts for. The precentage service cost increase than the expected | `string` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | AWS Region | `string` | n/a | yes |
 | <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | Tags to set for all resources | `map(string)` | `{}` | no |
 | <a name="input_sns_topic"></a> [sns\_topic](#input\_sns\_topic) | SNS Topic to notify | `string` | `""` | no |
 

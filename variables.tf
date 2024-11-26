@@ -1,11 +1,3 @@
-variable "region" {
-  type        = string
-  description = "AWS Region"
-  validation {
-    condition     = can(regex("[a-z][a-z]-[a-z]+-[1-9]", var.region))
-    error_message = "Must be valid AWS Region names."
-  }
-}
 variable "email"{
   type = string
   description = "Email to notify"
