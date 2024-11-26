@@ -1,14 +1,10 @@
-provider "aws" {
-  region = "eu-west-1"
-}
-
 resource "aws_sns_topic" "sns_topic" {
   name         = "sns"
   display_name = "sns"
 }
 module "cost-anomaly-detector" {
   source                 = "../"
-  region                 = "eu-west-1"
+
   sns_topic              = aws_sns_topic.sns_topic.arn
   create_anomaly_monitor = true
   raise_amount_percent   = "10"

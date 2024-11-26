@@ -23,10 +23,6 @@ Include this repository as a module in your existing terraform code:
 # AWS Cost anomaly Detection
 ################################################################################
 
-provider "aws" {
-  region = "eu-west-1"
-}
-
 resource "aws_sns_topic" "sns_topic" {
   name         = "sns"
   display_name = "sns"
@@ -36,7 +32,6 @@ module "cost-anomaly-detector-example" {
   source              = "delivops/cost-anomaly-detection/aws"
   # version  = "x.x.x"
 
-  region                = var.region
   sns_topic              = aws_sns_topic.sns_topic.arn
   raise_amount_percent  = var.raise_amount_percent
   raise_amount_absolute = var.raise_amount_absolute
