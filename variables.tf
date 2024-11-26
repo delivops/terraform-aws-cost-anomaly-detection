@@ -6,12 +6,16 @@ variable "region" {
     error_message = "Must be valid AWS Region names."
   }
 }
-
-variable "emails" {
-  type        = list(any)
-  description = "List of email addresses to notify"
+variable "email"{
+  type = string
+  description = "Email to notify"
+  default = ""
 }
-
+variable "sns_topic" {
+  type        = string
+  description = "SNS Topic to notify"
+  default = ""
+}
 variable "raise_amount_percent" {
   type        = string
   description = "An Expression object used to specify the anomalies that you want to generate alerts for. The precentage service cost increase than the expected"

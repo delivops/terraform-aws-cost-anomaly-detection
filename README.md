@@ -1,3 +1,5 @@
+![image info](logo.jpeg)
+
 # terraform-aws-cost-anomaly-detector
 
 This Terraform module provisions a AWS Cost Anomaly Detection.
@@ -21,12 +23,21 @@ Include this repository as a module in your existing terraform code:
 # AWS Cost anomaly Detection
 ################################################################################
 
+provider "aws" {
+  region = "eu-west-1"
+}
+
+resource "aws_sns_topic" "sns_topic" {
+  name         = "sns"
+  display_name = "sns"
+}
 
 module "cost-anomaly-detector-example" {
   source              = "delivops/cost-anomaly-detection/aws"
   # version  = "x.x.x"
+
   region                = var.region
-  emails                = var.emails
+  sns_topic              = aws_sns_topic.sns_topic.arn
   raise_amount_percent  = var.raise_amount_percent
   raise_amount_absolute = var.raise_amount_absolute
   resource_tags = var.tags
@@ -36,18 +47,19 @@ module "cost-anomaly-detector-example" {
 ```
 
 <!-- BEGIN_TF_DOCS -->
+
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0.0 |
+| Name                                                                     | Version  |
+| ------------------------------------------------------------------------ | -------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 0.13  |
+| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | >= 4.0.0 |
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.0.0 |
+| Name                                             | Version  |
+| ------------------------------------------------ | -------- |
+| <a name="provider_aws"></a> [aws](#provider_aws) | >= 4.0.0 |
 
 ## Modules
 
@@ -55,26 +67,27 @@ No modules.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_ce_anomaly_monitor.anomaly_monitor](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_monitor) | resource |
+| Name                                                                                                                                                     | Type     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| [aws_ce_anomaly_monitor.anomaly_monitor](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_monitor)                 | resource |
 | [aws_ce_anomaly_subscription.realtime_subscription](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_subscription) | resource |
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_anomaly_monitor_arn"></a> [anomaly\_monitor\_arn](#input\_anomaly\_monitor\_arn) | The arn of the anomaly monitor, only if the create\_anomaly\_monitor is false | `string` | `""` | no |
-| <a name="input_create_anomaly_monitor"></a> [create\_anomaly\_monitor](#input\_create\_anomaly\_monitor) | Boolian for create anomaly\_monitor or use an exist one | `bool` | `true` | no |
-| <a name="input_emails"></a> [emails](#input\_emails) | List of email addresses to notify | `list(any)` | n/a | yes |
-| <a name="input_raise_amount_absolute"></a> [raise\_amount\_absolute](#input\_raise\_amount\_absolute) | The Absolut increase in USD to trigger the detector. (ANOMALY\_TOTAL\_IMPACT\_ABSOLUTE) | `string` | n/a | yes |
-| <a name="input_raise_amount_percent"></a> [raise\_amount\_percent](#input\_raise\_amount\_percent) | An Expression object used to specify the anomalies that you want to generate alerts for. The precentage service cost increase than the expected | `string` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | AWS Region | `string` | n/a | yes |
-| <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | Tags to set for all resources | `map(string)` | `{}` | no |
+| Name                                                                                                | Description                                                                                                                                     | Type          | Default | Required |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------- | :------: |
+| <a name="input_anomaly_monitor_arn"></a> [anomaly_monitor_arn](#input_anomaly_monitor_arn)          | The arn of the anomaly monitor, only if the create_anomaly_monitor is false                                                                     | `string`      | `""`    |    no    |
+| <a name="input_create_anomaly_monitor"></a> [create_anomaly_monitor](#input_create_anomaly_monitor) | Boolian for create anomaly_monitor or use an exist one                                                                                          | `bool`        | `true`  |    no    |
+| <a name="input_emails"></a> [emails](#input_emails)                                                 | List of email addresses to notify                                                                                                               | `list(any)`   | n/a     |   yes    |
+| <a name="input_raise_amount_absolute"></a> [raise_amount_absolute](#input_raise_amount_absolute)    | The Absolut increase in USD to trigger the detector. (ANOMALY_TOTAL_IMPACT_ABSOLUTE)                                                            | `string`      | n/a     |   yes    |
+| <a name="input_raise_amount_percent"></a> [raise_amount_percent](#input_raise_amount_percent)       | An Expression object used to specify the anomalies that you want to generate alerts for. The precentage service cost increase than the expected | `string`      | n/a     |   yes    |
+| <a name="input_region"></a> [region](#input_region)                                                 | AWS Region                                                                                                                                      | `string`      | n/a     |   yes    |
+| <a name="input_resource_tags"></a> [resource_tags](#input_resource_tags)                            | Tags to set for all resources                                                                                                                   | `map(string)` | `{}`    |    no    |
 
 ## Outputs
 
 No outputs.
+
 <!-- END_TF_DOCS -->
 
 ## information
@@ -84,4 +97,3 @@ No outputs.
 ## License
 
 MIT
-
