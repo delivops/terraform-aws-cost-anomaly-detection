@@ -3,10 +3,9 @@ variable "email"{
   description = "Email to notify"
   default = ""
 }
-variable "sns_topic" {
-  type        = string
-  description = "SNS Topic to notify"
-  default = ""
+variable "sns_topics" {
+  description = "List of SNS topic ARNs to subscribe to the anomaly alerts"
+  type        = list(string)
 }
 variable "raise_amount_percent" {
   type        = string

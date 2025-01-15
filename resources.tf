@@ -4,6 +4,7 @@ resource "aws_ce_anomaly_monitor" "anomaly_monitor" {
   monitor_type      = "DIMENSIONAL"
   monitor_dimension = "SERVICE"
 }
+
 resource "aws_ce_anomaly_subscription" "realtime_subscription" {
   name      = "RealtimeAnomalySubscription"
   frequency = "IMMEDIATE"
@@ -26,8 +27,12 @@ resource "aws_ce_anomaly_subscription" "realtime_subscription" {
   }
 
   monitor_arn_list = var.create_anomaly_monitor ? [aws_ce_anomaly_monitor.anomaly_monitor[0].arn] : [var.anomaly_monitor_arn]
-  subscriber {
-    type    = "SNS"
-    address = var.sns_topic
+
+  dynamic "subscriber" {
+    for_each = var.sns_topics
+    content {
+      type    = "SNS"
+      address = subscriber.value
+    }
   }
 }
