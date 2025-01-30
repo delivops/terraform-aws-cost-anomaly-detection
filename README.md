@@ -32,7 +32,7 @@ module "cost-anomaly-detector-example" {
   source              = "delivops/cost-anomaly-detection/aws"
   # version  = "x.x.x"
 
-  sns_topics            = [aws_sns_topic.sns_topic.arn]
+  sns_topic            = aws_sns_topic.sns_topic.arn
   raise_amount_percent  = var.raise_amount_percent
   raise_amount_absolute = var.raise_amount_absolute
   resource_tags = var.tags

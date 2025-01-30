@@ -5,7 +5,7 @@ resource "aws_sns_topic" "sns_topic" {
 module "cost-anomaly-detector" {
   source                 = "../"
 
-  sns_topics            = [aws_sns_topic.sns_topic.arn]
+  sns_topic           = aws_sns_topic.sns_topic.arn
   create_anomaly_monitor = true
   raise_amount_percent   = "10"
   raise_amount_absolute  = "15"
