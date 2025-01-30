@@ -76,7 +76,7 @@ No modules.
 | <a name="input_raise_amount_absolute"></a> [raise\_amount\_absolute](#input\_raise\_amount\_absolute) | The Absolut increase in USD to trigger the detector. (ANOMALY\_TOTAL\_IMPACT\_ABSOLUTE) | `string` | n/a | yes |
 | <a name="input_raise_amount_percent"></a> [raise\_amount\_percent](#input\_raise\_amount\_percent) | An Expression object used to specify the anomalies that you want to generate alerts for. The precentage service cost increase than the expected | `string` | n/a | yes |
 | <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | Tags to set for all resources | `map(string)` | `{}` | no |
-| <a name="input_sns_topics"></a> [sns\_topics](#input\_sns\_topics) | List of SNS topic ARNs to subscribe to the anomaly alerts | `list(string)` | n/a | yes |
+| <a name="input_sns_topic"></a> [sns\_topic](#input\_sns\_topic) | SNS Topic to notify | `string` | `""` | no |
 
 ## Outputs
 
